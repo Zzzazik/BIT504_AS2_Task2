@@ -167,7 +167,7 @@ public class GameMain extends JPanel implements MouseListener{
 		        currentState = GameState.Draw;
 			}
 			//otherwise no change to current state of playing
-			 repaint();
+			 
 		}
 		
 				
@@ -203,7 +203,7 @@ public class GameMain extends JPanel implements MouseListener{
 		}   
 		
 		//TODO: redraw the graphics on the UI          
-           
+		repaint();
 	}
 		
 	
