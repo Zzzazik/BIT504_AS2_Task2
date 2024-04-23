@@ -7,6 +7,13 @@ import javax.swing.*;
 
 
 public class GameMain extends JPanel implements MouseListener{
+	/**There was an error"added this field to fix an
+	 error "The serializable class GameMain does not declare a static final serialVersionUID field of type long"
+	 * so I added the field bellow to fix it
+	 */
+	private static final long serialVersionUID = 1L; 
+	/* 
+	*/
 	//Constants for game 
 	// number of ROWS by COLS cell constants 
 	public static final int ROWS = 3;     
@@ -93,6 +100,27 @@ public class GameMain extends JPanel implements MouseListener{
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
 	         }
+
+			public static void main(String[] args) {
+				    // Run GUI code in Event Dispatch thread for thread safety.
+				javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			         public void run() {
+						//create a main window to contain the panel
+						JFrame frame = new JFrame(TITLE);
+						
+						//TODO: create the new GameMain panel and add it to the frame
+								
+						
+						
+						//TODO: set the default close operation of the frame to exit_on_close
+				            
+						
+						frame.pack();             
+						frame.setLocationRelativeTo(null);
+						frame.setVisible(true);
+			         }
+				 });
+			}
 		 });
 	}
 	/** Custom painting codes on this JPanel */
