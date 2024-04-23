@@ -31,7 +31,10 @@ public class GameMain extends JPanel implements MouseListener{
 	//TODO: create the enumeration for the variable below (GameState currentState)
 	//HINT all of the states you require are shown in the code within GameMain
 	private GameState currentState; 
-	
+	private enum GameState {
+	    Playing, Draw, Cross_won, Nought_won // enumeration created for the variable GameState
+	}
+
 	// the current player
 	private Player currentPlayer; 
 	// for displaying game status message
@@ -42,7 +45,7 @@ public class GameMain extends JPanel implements MouseListener{
 	public GameMain() {   
 		
 		// TODO: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.          
-	    
+		addMouseListener(this); //added mouse listener
 	    
 		// Setup the status bar (JLabel) to display status message       
 		statusBar = new JLabel("         ");       
@@ -59,9 +62,16 @@ public class GameMain extends JPanel implements MouseListener{
 		
 		
 		// TODO: Create a new instance of the game "Board"class. HINT check the variables above for the correct name
+		board = new Board(); // Create a new instance of the Board class
+		initGame(); // Initialise the game board
 
 		
 		//TODO: call the method to initialise the game board
+		if (currentPlayer == Player.Cross) {
+		    statusBar.setText("X's Turn");
+		} else {
+		    statusBar.setText("O's Turn");
+		}
 
 	}
 	
@@ -99,11 +109,14 @@ public class GameMain extends JPanel implements MouseListener{
 			if (currentPlayer == Player.Cross) {   
 			
 				//TODO: use the status bar to display the message "X"'s Turn
-
+				if (currentPlayer == Player.Cross) {
 				
-			} else {    
+					//TODO: use the status bar to display the message "O"'s TurnstatusBar.setText("X's Turn");//A status bar displays the message "X's" turn.
+				} else {
+				    statusBar.setText("O's Turn");//A status bar displays the message "O's" turn.
+				}  //
 				
-				//TODO: use the status bar to display the message "O"'s Turn
+				
 
 				
 			}       
@@ -121,7 +134,7 @@ public class GameMain extends JPanel implements MouseListener{
 		
 	
 	  /** Initialise the game-board contents and the current status of GameState and Player) */
-		public void initGame() {
+	public void initGame() {
 			for (int row = 0; row < ROWS; ++row) {          
 				for (int col = 0; col < COLS; ++col) {  
 					// all cells empty
@@ -138,7 +151,7 @@ public class GameMain extends JPanel implements MouseListener{
 		 * If no winner then isDraw is called to see if deadlock, if not GameState stays as PLAYING
 		 *   
 		 */
-		public void updateGame(Player thePlayer, int row, int col) {
+	public void updateGame(Player thePlayer, int row, int col) {
 			//check for win after play
 			if(board.hasWon(thePlayer, row, col)) {
 				
