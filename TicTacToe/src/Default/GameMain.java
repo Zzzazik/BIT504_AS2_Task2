@@ -90,11 +90,15 @@ public class GameMain extends JPanel implements MouseListener{
 				JFrame frame = new JFrame(TITLE);
 				
 				//TODO: create the new GameMain panel and add it to the frame
-						
+				// Create a new GameMain panel and add it to the frame
+	            GameMain gameMainPanel = new GameMain();
+	            frame.getContentPane().add(gameMainPanel);		
 				
 				
 				//TODO: set the default close operation of the frame to exit_on_close
-		            
+	            // Set the default close operation of the frame to exit_on_close
+	            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   
 				
 				frame.pack();             
 				frame.setLocationRelativeTo(null);
@@ -138,11 +142,12 @@ public class GameMain extends JPanel implements MouseListener{
 			
 				//TODO: use the status bar to display the message "X"'s Turn
 				if (currentPlayer == Player.Cross) {
+			
 				    statusBar.setText("X's Turn");//A status bar displays the message "X's" turn
 				//TODO: use the status bar to display the message "O"'s Turn
 				} else {
 				    statusBar.setText("O's Turn");//A status bar displays the message "O's" turn.
-				}  
+				} 
 
 				
 			}       
@@ -191,6 +196,7 @@ public class GameMain extends JPanel implements MouseListener{
 			} else if (board.isDraw ()) {
 					
 				// TODO: set the currentstate to the draw gamestate
+
 				 // Set the current state to the draw game state
 		        currentState = GameState.Draw;
 			}
