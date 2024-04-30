@@ -19,7 +19,6 @@ public class Cell {
         this.row = row;
         this.col = col;
 		
-		
 		//TODO: call the method that sets the cell content to EMPTY
         // Call the method that sets the cell content to EMPTY
         clear(); 

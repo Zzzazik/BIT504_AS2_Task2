@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
-
 public class GameMain extends JPanel implements MouseListener{
 	/**There was an error"added this field to fix an
 	 error "The serializable class GameMain does not declare a static final serialVersionUID field of type long"
@@ -107,48 +105,54 @@ public class GameMain extends JPanel implements MouseListener{
 	}
 	/** Custom painting codes on this JPanel */
 	public void paintComponent(Graphics g) {
-		//fill background and set colour to white
-		super.paintComponent(g);
-		setBackground(Color.WHITE);
-		//ask the game board to paint itself
-		board.paint(g);
-		
-		//set status bar message
-		if (currentState == GameState.Playing) {          
-			statusBar.setForeground(Color.BLACK);          
-			if (currentPlayer == Player.Cross) {   
-			
-				//TODO: use the status bar to display the message "X"'s Turn
-				if (currentPlayer == Player.Cross) {
-				    statusBar.setText("X's Turn");//A status bar displays the message "X's" turn
-				//TODO: use the status bar to display the message "O"'s Turn
-				} else {
-				    statusBar.setText("O's Turn");//A status bar displays the message "O's" turn.
-				}  
-			}
-		} else if (currentState == GameState.Draw) {          
-			statusBar.setForeground(Color.RED);          
-			statusBar.setText("It's a Draw! Click to play again.");       
-		} else if (currentState == GameState.Cross_won) {          
-			statusBar.setForeground(Color.RED);          
-			statusBar.setText("'X' Won! Click to play again.");       
-		} else if (currentState == GameState.Nought_won) {          
-			statusBar.setForeground(Color.RED);          
-			statusBar.setText("'O' Won! Click to play again.");       
-		}
+	    // Fill background and set colour to white
+	    super.paintComponent(g);
+	    setBackground(Color.WHITE);
+	    
+	    // Ask the game board to paint itself
+	    board.paint(g);
+	    
+	    // Set status bar message based on current game state
+	    if (currentState == GameState.Playing) {          
+	        // Set text color to black
+	        statusBar.setForeground(Color.BLACK);          
+	        
+	        // Check current player's turn and update status bar message accordingly
+	        if (currentPlayer == Player.Cross) {
+	            statusBar.setText("X's Turn");
+	        } else {
+	            statusBar.setText("O's Turn");
+	        }  
+	    } else if (currentState == GameState.Draw) {          
+	        // Set text color to red
+	        statusBar.setForeground(Color.RED);          
+	        // Set draw message
+	        statusBar.setText("It's a Draw! Click to play again.");       
+	    } else if (currentState == GameState.Cross_won) {          
+	        // Set text color to red
+	        statusBar.setForeground(Color.RED);          
+	        // Set X won message
+	        statusBar.setText("'X' Won! Click to play again.");       
+	    } else if (currentState == GameState.Nought_won) {          
+	        // Set text color to red
+	        statusBar.setForeground(Color.RED);          
+	        // Set O won message
+	        statusBar.setText("'O' Won! Click to play again.");       
+	    }
 	}
+
 		
 	
 	  /** Initialise the game-board contents and the current status of GameState and Player) */
 	public void initGame() {
-			for (int row = 0; row < ROWS; ++row) {          
-				for (int col = 0; col < COLS; ++col) {  
-					// all cells empty
-					board.cells[row][col].content = Player.Empty;           
-				}
+		for (int row = 0; row < ROWS; ++row) {          
+			for (int col = 0; col < COLS; ++col) {  
+				// all cells empty
+				board.cells[row][col].content = Player.Empty;           
 			}
-			 currentState = GameState.Playing;
-			 currentPlayer = Player.Cross;
+		}
+		currentState = GameState.Playing;
+		currentPlayer = Player.Cross;//X's starts the game
 		}
 		
 		
