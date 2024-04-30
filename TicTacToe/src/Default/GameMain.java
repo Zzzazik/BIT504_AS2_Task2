@@ -7,6 +7,13 @@ import javax.swing.*;
 
 
 public class GameMain extends JPanel implements MouseListener{
+	/**There was an error"added this field to fix an
+	 error "The serializable class GameMain does not declare a static final serialVersionUID field of type long"
+	 * so I added the field bellow to fix it
+	 */
+	private static final long serialVersionUID = 1L; 
+	/* 
+	*/
 	//Constants for game 
 	// number of ROWS by COLS cell constants 
 	public static final int ROWS = 3;     
@@ -83,16 +90,41 @@ public class GameMain extends JPanel implements MouseListener{
 				JFrame frame = new JFrame(TITLE);
 				
 				//TODO: create the new GameMain panel and add it to the frame
-						
+				// Create a new GameMain panel and add it to the frame
+	            GameMain gameMainPanel = new GameMain();
+	            frame.getContentPane().add(gameMainPanel);		
 				
 				
 				//TODO: set the default close operation of the frame to exit_on_close
-		            
+	            // Set the default close operation of the frame to exit_on_close
+	            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   
 				
 				frame.pack();             
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
 	         }
+
+			public static void main(String[] args) {
+				    // Run GUI code in Event Dispatch thread for thread safety.
+				javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			         public void run() {
+						//create a main window to contain the panel
+						JFrame frame = new JFrame(TITLE);
+						
+						//TODO: create the new GameMain panel and add it to the frame
+								
+						
+						
+						//TODO: set the default close operation of the frame to exit_on_close
+				            
+						
+						frame.pack();             
+						frame.setLocationRelativeTo(null);
+						frame.setVisible(true);
+			         }
+				 });
+			}
 		 });
 	}
 	/** Custom painting codes on this JPanel */
@@ -110,13 +142,12 @@ public class GameMain extends JPanel implements MouseListener{
 			
 				//TODO: use the status bar to display the message "X"'s Turn
 				if (currentPlayer == Player.Cross) {
-				
-					//TODO: use the status bar to display the message "O"'s TurnstatusBar.setText("X's Turn");//A status bar displays the message "X's" turn.
+			
+				    statusBar.setText("X's Turn");//A status bar displays the message "X's" turn
+				//TODO: use the status bar to display the message "O"'s Turn
 				} else {
 				    statusBar.setText("O's Turn");//A status bar displays the message "O's" turn.
-				}  //
-				
-				
+				} 
 
 				
 			}       
@@ -156,15 +187,21 @@ public class GameMain extends JPanel implements MouseListener{
 			if(board.hasWon(thePlayer, row, col)) {
 				
 				// TODO: check which player has won and update the currentstate to the appropriate gamestate for the winner
-
+				if (thePlayer == Player.Cross) {
+		            currentState = GameState.Cross_won;
+		        } else {
+		            currentState = GameState.Nought_won;
+		        }
 				
-			} else 
-				if (board.isDraw ()) {
+			} else if (board.isDraw ()) {
 					
 				// TODO: set the currentstate to the draw gamestate
 
+				 // Set the current state to the draw game state
+		        currentState = GameState.Draw;
 			}
 			//otherwise no change to current state of playing
+			 
 		}
 		
 				
@@ -200,7 +237,7 @@ public class GameMain extends JPanel implements MouseListener{
 		}   
 		
 		//TODO: redraw the graphics on the UI          
-           
+		repaint();//repainted graphics.
 	}
 		
 	
