@@ -191,8 +191,10 @@ public class GameMain extends JPanel implements MouseListener{
 		int mouseX = e.getX();             
 		int mouseY = e.getY();             
 		// Get the row and column clicked             
-		int rowSelected = mouseY / CELL_SIZE;             
-		int colSelected = mouseX / CELL_SIZE;               			
+		int rowSelected = mouseY / CELL_SIZE; 
+		System.out.println("Row selected: " + rowSelected);//added to test if the calculation is correct
+		int colSelected = mouseX / CELL_SIZE; 
+		System.out.println("Column selected: " + colSelected);//added to test if the calculation is correct
 		if (currentState == GameState.Playing) {                
 			if (rowSelected >= 0 && rowSelected < ROWS && colSelected >= 0 && colSelected < COLS && board.cells[rowSelected][colSelected].content == Player.Empty) {
 				// move  
@@ -200,14 +202,9 @@ public class GameMain extends JPanel implements MouseListener{
 				// update currentState                  
 				updateGame(currentPlayer, rowSelected, colSelected); 
 				// Switch player
-				if (currentPlayer == Player.Cross) {
-					currentPlayer =  Player.Nought;
+				currentPlayer = (currentPlayer == Player.Cross) ? Player.Nought : Player.Cross; // Switching player after valid move
 				}
-				else {
-					currentPlayer = Player.Cross;
-				}
-			}             
-		} else {        
+			} else {        
 			// game over and restart              
 			initGame();            
 		}   
