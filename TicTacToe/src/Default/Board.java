@@ -25,8 +25,7 @@ public class Board {
 		}
 	}
 	
-
-	 /** Return true if it is a draw (i.e., no more EMPTY cells) */ 
+	/** Return true if it is a draw (i.e., no more EMPTY cells) */ 
 	public boolean isDraw() {
 		 
 		// TODO: Check whether the game has ended in a draw. 
@@ -40,10 +39,7 @@ public class Board {
 		    }
 		}
 		return true; // All cells are filled, it's a draw
-   
-		
-
-		
+ 
 	}
 	
 	/** Return true if the current player "thePlayer" has won after making their move  */
@@ -60,8 +56,6 @@ public class Board {
 			    return true; // Player has 3 in that column
 			}
 
-		
-		
 		 // 3-in-the-diagonal
 		if( cells[0][0].content == thePlayer && cells[1][1].content == thePlayer && cells[2][2].content == thePlayer)
 			return true;
@@ -73,9 +67,7 @@ public class Board {
 			    cells[2][0].content == thePlayer) {
 			    return true; // Player has 3 in the other diagonal
 			}
-
-
-		
+	
 		//no winner, keep playing
 		return false;
 	}
