@@ -63,8 +63,6 @@ public class GameMain extends JPanel implements MouseListener{
 		board = new Board(); // Create a new instance of the Board class
 		initGame(); // Initialise the game board
 
-		
-		//TODO: call the method to initialise the game board
 		if (currentPlayer == Player.Cross) {
 		    statusBar.setText("X's Turn");
 		} else {
@@ -154,8 +152,6 @@ public class GameMain extends JPanel implements MouseListener{
 	public void updateGame(Player thePlayer, int row, int col) {
 			//check for win after play
 			if(board.hasWon(thePlayer, row, col)) {
-				
-				// TODO: check which player has won and update the currentstate to the appropriate gamestate for the winner
 				if (thePlayer == Player.Cross) {
 		            currentState = GameState.Cross_won;
 		        } else {
